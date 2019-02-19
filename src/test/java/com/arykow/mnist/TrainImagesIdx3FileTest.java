@@ -87,12 +87,14 @@ public class TrainImagesIdx3FileTest {
 
 	@Test
 	public void shouldHaveHeader() {
-		TrainImagesIdx3File file = new TrainImagesIdx3File();
+		final TrainImagesIdx3File file = new TrainImagesIdx3File();
 
 		assertEquals(0x00000803, file.magicNumber);
-		assertEquals(60000, file.numberOfImages);
-		assertEquals(28, file.numberOfRows);
-		assertEquals(28, file.numberOfColumns);
+		assertEquals(60000, file.images.size());
+		file.images.forEach(image -> {
+			assertEquals(28, image.rows);
+			assertEquals(28, image.columns);
+		});
 	}
 
 }
